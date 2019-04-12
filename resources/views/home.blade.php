@@ -7,8 +7,8 @@
 
 @auth
 <p class="text">
-    @foreach(auth()->user()->roles as $role)
-    Logged as : <span class="text-info">  {{ $role->name }} </span>
+Logged as :  @foreach(auth()->user()->roles as $role)
+    <span class="text-info">  {{ $role->name }} |</span>
     @endforeach
 </p>
 @endauth

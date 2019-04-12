@@ -84,7 +84,7 @@ class File extends Model
     }
 
     //returns all declined files  by a user
-    public function scopeDeclinedBy($query, User $user)
+    public function scopeassignments($query, User $user)
     {
 
         return $query->where('finished', true)->where('approved_by', $user->id);
