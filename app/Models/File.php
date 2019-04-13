@@ -62,6 +62,11 @@ class File extends Model
         return $this->hasOne(Upload::class);
     }
 
+    public function scopeDeclinedBy($query, User $user)
+    {
+
+        return $query->where('approved_by', $user->id)->where('approved', false);
+    }
 
 
     public function scopeApprovedBy($query, User $user)
