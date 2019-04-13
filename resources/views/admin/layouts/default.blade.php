@@ -14,7 +14,7 @@
             </div>
 
             <div class="col-md-3 text-center"> <h5 class="text-bold"> <strong>You declined </h5></strong>
-        <h4 class="text-white">  {{auth()->user()->files()->Declinedby(auth()->user())->get()->count()}} assignments </h4>
+        <h4 class="text-white">  {{auth()->user()->files()->declinedby(auth()->user())->get()->count()}} assignments </h4>
 
             </div>
             <div class="col-md-3 text-center"> <h5 class="text-bold"> <strong>You  uploaded</h5></strong>
