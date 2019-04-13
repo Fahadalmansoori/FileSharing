@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 06, 2019 at 03:23 PM
+-- Generation Time: Apr 13, 2019 at 05:12 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -70,6 +70,22 @@ INSERT INTO `courses` (`id`, `school_id`, `title`, `about`, `created_at`, `updat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `downloads`
+--
+
+DROP TABLE IF EXISTS `downloads`;
+CREATE TABLE IF NOT EXISTS `downloads` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `downloads_user_id_index` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -94,12 +110,13 @@ DROP TABLE IF EXISTS `files`;
 CREATE TABLE IF NOT EXISTS `files` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `approved_by` int(11) DEFAULT NULL,
   `module_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `keywords` varchar(3000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `about` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` decimal(6,2) DEFAULT '10.00',
-  `mark` double NOT NULL,
+  `price` decimal(6,2) NOT NULL,
+  `mark` decimal(10,0) NOT NULL,
   `live` tinyint(1) NOT NULL DEFAULT '0',
   `approved` tinyint(1) NOT NULL DEFAULT '0',
   `finished` tinyint(1) NOT NULL DEFAULT '0',
@@ -110,15 +127,19 @@ CREATE TABLE IF NOT EXISTS `files` (
   PRIMARY KEY (`id`),
   KEY `files_user_id_index` (`user_id`),
   KEY `files_module_id_index` (`module_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `files`
 --
 
-INSERT INTO `files` (`id`, `user_id`, `module_id`, `title`, `keywords`, `about`, `price`, `mark`, `live`, `approved`, `finished`, `owner`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(93, 1, 109, 'Introduction to Databases - u1578102', 'Introduction to Databases - u1578102', 'Introduction to database', '10.00', 69, 0, 0, 0, 1, NULL, '2019-04-06 12:45:49', '2019-04-06 12:45:49'),
-(92, 1, 109, 'Introduction to Databases - u1578102', 'Introduction to Databases - u1578102', 'qwqqw', '10.00', 70, 0, 0, 0, 1, NULL, '2019-04-06 12:28:00', '2019-04-06 12:28:00');
+INSERT INTO `files` (`id`, `user_id`, `approved_by`, `module_id`, `title`, `keywords`, `about`, `price`, `mark`, `live`, `approved`, `finished`, `owner`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(64, 1, NULL, 18, 'Computational Mathematics 2 - u1578102', 'Computational Mathematics 2 - u1578102', 'Computing BSc(Hons)', '10.00', '70', 0, 0, 0, 1, NULL, '2019-04-12 23:25:51', '2019-04-12 23:25:51'),
+(63, 1, 1, 15, 'Large-Scale Software Engineering - u1578102', 'Large-Scale Software Engineering - u1578102', 'Computing BSc(Hons', '10.00', '50', 1, 1, 0, 1, NULL, '2019-04-12 23:11:13', '2019-04-12 23:11:13'),
+(59, 1, 1, 2, ' Hardware and Networks - u1578102', ' Hardware and Networks - u1578102', 'Computing BSc(Hons)', '10.00', '70', 1, 1, 0, 1, NULL, '2019-04-10 22:48:17', '2019-04-12 20:27:51'),
+(62, 1, 1, 12, ' Web Development - u1578102', ' Web Development - u1578102', 'web Development', '10.00', '20', 1, 1, 0, 1, NULL, '2019-04-12 23:10:25', '2019-04-12 23:10:25'),
+(60, 1, 1, 3, 'Studio 1 - u1578102', 'Studio 1 - u1578102', 'Studio 1', '10.00', '50', 1, 1, 0, 1, NULL, '2019-04-11 17:10:38', '2019-04-12 23:07:54'),
+(61, 3, NULL, 7, 'Team Project - Tutor 1', 'Team Project - Tutor 1', 'Team project', '10.00', '70', 0, 0, 0, 1, NULL, '2019-04-11 19:19:37', '2019-04-11 19:19:37');
 
 -- --------------------------------------------------------
 
@@ -176,25 +197,26 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(17, '2014_10_12_000000_create_users_table', 4),
+(24, '2019_04_06_215203_role_user_table', 9),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2018_10_27_210040_create_jobs_table', 1),
 (4, '2018_10_27_210815_create_failed_jobs_table', 1),
-(12, '2018_10_29_201925_create_files_table', 2),
+(22, '2019_04_03_175110_create_uploads_table', 7),
 (6, '2018_11_01_200340_create_file_user_table', 1),
 (14, '2019_03_18_202617_create_modules_table', 3),
 (8, '2019_03_18_203745_create_courses_table', 1),
 (9, '2019_03_18_205749_create_schools_table', 1),
 (10, '2019_03_18_210129_create_roles_table', 1),
-(11, '2019_03_18_210610_create_users_roles_table', 1),
-(19, '2019_04_03_175110_create_uploads_table', 5);
+(23, '2014_10_12_000000_create_users_table', 8),
+(21, '2018_10_29_201925_create_files_table', 7),
+(25, '2019_04_10_214851_create_downloads_table', 10);
 
 -- --------------------------------------------------------
 
@@ -371,7 +393,44 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `about`, `created_at`, `updated_at`) VALUES
+(1, 'Super_Admin', NULL, '2019-03-31 23:00:00', '2019-04-01 23:00:00'),
+(2, 'Tutor', NULL, '2019-04-15 23:00:00', '2019-04-14 23:00:00'),
+(3, 'Student', NULL, '2019-04-15 23:00:00', '2019-04-08 23:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles_users`
+--
+
+DROP TABLE IF EXISTS `roles_users`;
+CREATE TABLE IF NOT EXISTS `roles_users` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `roles_users_user_id_index` (`user_id`),
+  KEY `roles_users_role_id_index` (`role_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles_users`
+--
+
+INSERT INTO `roles_users` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
+(2, 2, 2, NULL, NULL),
+(44, 3, 3, NULL, NULL),
+(51, 1, 1, NULL, NULL),
+(50, 1, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -420,15 +479,18 @@ CREATE TABLE IF NOT EXISTS `uploads` (
   KEY `uploads_file_id_index` (`file_id`),
   KEY `uploads_user_id_index` (`user_id`),
   KEY `uploads_module_id_index` (`module_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `uploads`
 --
 
 INSERT INTO `uploads` (`id`, `file_id`, `user_id`, `module_id`, `filename`, `size`, `approved`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(114, 92, 1, 92, 'U1578102 -Product Design.pdf', 1604853, 0, NULL, '2019-04-06 12:28:29', '2019-04-06 12:28:29'),
-(115, 93, 1, 93, 'U1578102 -Ethical review form 1819.pdf', 278345, 0, NULL, '2019-04-06 12:45:56', '2019-04-06 12:45:56');
+(59, 64, 1, 64, 'U1578102 -Product Design.pdf', 1604853, 0, NULL, '2019-04-12 23:26:00', '2019-04-12 23:26:00'),
+(58, 62, 1, 62, 'U1578102 -Product Design.pdf', 1604853, 0, NULL, '2019-04-12 23:10:33', '2019-04-12 23:10:33'),
+(54, 59, 1, 59, 'U1578102- Literature review.pdf', 1594127, 1, NULL, '2019-04-10 22:48:19', '2019-04-12 20:27:51'),
+(56, 60, 1, 60, 'Poster U1578102 .pptx', 164696, 1, NULL, '2019-04-11 17:11:00', '2019-04-12 23:07:54'),
+(57, 61, 3, 61, 'U1578102 -Ethical review form 1819.pdf', 278345, 0, NULL, '2019-04-11 19:19:41', '2019-04-11 19:19:41');
 
 -- --------------------------------------------------------
 
@@ -452,34 +514,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
+  UNIQUE KEY `users_student_number_unique` (`student_number`),
   KEY `users_course_id_index` (`course_id`),
   KEY `users_school_id_index` (`school_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `course_id`, `school_id`, `first_name`, `last_name`, `student_number`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 21, 1, 'Fahed', 'Almansoori', 'u1578102', 'u1578102@unimail.hud.ac.uk', NULL, '$2y$10$0LP1k/apGRHvdbXZ18IiMOSctpo3QP1YQM.HtGEYGgxoi6x2eeeYa', 'd8OZuJ4XKnB7qxvSK04I0t6bNVXdtvaxzhRX4MNSBW7TRv53gU7SVbzXtPJv', '2019-04-01 22:14:08', '2019-04-01 22:14:08');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_roles`
---
-
-DROP TABLE IF EXISTS `users_roles`;
-CREATE TABLE IF NOT EXISTS `users_roles` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `users_roles_user_id_index` (`user_id`),
-  KEY `users_roles_role_id_index` (`role_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(1, 1, 1, 'Fahed', 'Almansoori', 'u1578102', 'u1578102@unimail.hud.ac.uk', NULL, '$2y$10$25E/adHWn1KGVKkH/RUPS.RacBhQciCUflaxufw8w3l0CIsh9fP/a', 't9X5V6pDegNrhovD3aNCkOHwjnpbCiOY55oKYgNJESg6X57yQET3rW8D2yBn', '2019-04-06 21:06:34', '2019-04-12 23:28:23'),
+(3, 1, 1, 'Tutor 1', 'Tutor', 'Tutor 1', 'Tutor 1@unimail.hud.ac.uk', NULL, '$2y$10$wmK0yf9saDXX8j/3WFvJpuBIoxGggLAoRnotkjxDry52vqufq5Of6', 'OBTnrGxHH6dpAaXMdcQy62l4gNJ2OpdxyzM9xUPdRIBLBx8I9EFxnoPboU0z', '2019-04-11 18:36:41', '2019-04-11 18:36:41');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
