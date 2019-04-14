@@ -1,5 +1,5 @@
 
-@extends('Account.Layouts.default')
+@extends('Account.layouts.default')
 
 @section('title', 'Sell file')
 

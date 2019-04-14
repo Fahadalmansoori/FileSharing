@@ -27,7 +27,7 @@ Route::get('/search', 'SearchController@searchFiles')->name('search');
 Route::group(['prefix' => '/account', 'middleware' => 'auth', 'as' => 'account'], function () {
     Route::get('/', 'Accounts\AccountController@index')->name('.index');
     Route::get('/update-details/{user}', 'Accounts\AccountController@update')->name('.update');
-    Route::post('/update-details/{user}', 'Accounts\AccountController@store');
+    Route::post('/update-details/{user}', 'Accounts\AccountController@store')->name('.update');
     Route::get('/change-password/{user}', 'Accounts\AccountController@changePassword')->name('.changePassword');
 });
 

@@ -1,3 +1,3 @@
 
-@extends ('account.layouts.default')
+@extends ('Account.layouts.default')
 

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\models\Role;
-use App\models\File;
-use App\models\School;
-use App\models\Course;
+use App\Models\Role;
+use App\Models\File;
+use App\Models\School;
+use App\Models\Course;
 use App\Models\Upload;
 use Auth;
 
