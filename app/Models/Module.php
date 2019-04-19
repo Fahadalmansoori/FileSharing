@@ -48,6 +48,12 @@ class Module extends Model
 
         return $query->where('year', 4);
     }
+/***
+ *
+ /* This function will customize the data sent to Algolia API
+ *
+ */
+
 
     public function toSearchableArray()
     {
@@ -55,9 +61,9 @@ class Module extends Model
 
         $array['course'] = $this->course;
         $array['school'] = $this->course->school;
-        //$array['files'] = $this->files;
         return $array;
     }
+
 
     public function uploads()
     {

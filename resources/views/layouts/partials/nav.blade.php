@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md  bg-dark border mb-5 p-4">
+<nav class="navbar navbar-expand-md  bg-dark border mb-5 p-4 text-info">
 
     <a class="navbar-brand" href="{{ url('/') }}">
         {{ config('app.name', 'File sharing') }}
