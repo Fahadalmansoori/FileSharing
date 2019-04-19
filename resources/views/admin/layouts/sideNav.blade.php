@@ -1,5 +1,5 @@
 <nav class="nav flex-column">
-    <h3 class=" text-secondary  border-bottom"> Admin Tools  </h3>
+    <h3 class=" text-secondary  border-bottom"> Tutor Tools  </h3>
     <a class="nav-link {{request()->is('admin/pending/*')? ' bg-info text-warning' : ' '}} " href="{{ route('admin.pending', Auth::user())}}">Pending files </a>
     <a class="nav-link  {{request()->is('admin/approvedbyme/*')? ' bg-info text-warning' : ' '}} " href="{{route('admin.approvedby', Auth::user()) }}">Files approved by you </a>
     <a class="nav-link  {{request()->is('admin/declinedbyme/*')? ' bg-info text-warning' : ' '}}" href="{{route('admin.declinedby',Auth::user())}}">Files declined by you</a>
