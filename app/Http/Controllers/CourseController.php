@@ -17,6 +17,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses =  Course::paginate(6);
+
         // $years1 = Module::Year1()->get();   //get the year 1 modules form the scope
 
         // $years2 = Module::year2()->get();   //get the year 2 modules form the scope

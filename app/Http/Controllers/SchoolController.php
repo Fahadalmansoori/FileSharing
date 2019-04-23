@@ -51,9 +51,10 @@ class SchoolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(School $school)
     {
-        //
+        $courses = $school->courses()->paginate(6);
+        return view('schools.page', compact('courses','school'));
     }
 
     /**
@@ -93,6 +94,6 @@ class SchoolController extends Controller
     public function GetCourses(School $school)
     {
         $courses = $school->courses()->paginate(6);
-        return view('courses.index', compact('courses'));
+        return view('courses.index', compact('courses','school'));
     }
 }

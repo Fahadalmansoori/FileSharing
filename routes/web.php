@@ -73,6 +73,7 @@ School Routes
 Route::group(['prefix' => 'school', 'middleware' => 'auth', 'as' => 'school'], function () {
     Route::get('/all', 'SchoolController@fetch')->name('.fetch');
     Route::get('/courses/{school}', 'SchoolController@GetCourses')->name('.courses');
+    Route::get('/page/{school}', 'SchoolController@show')->name('.page');
 });
 
 /*

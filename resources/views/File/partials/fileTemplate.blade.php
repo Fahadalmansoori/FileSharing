@@ -8,6 +8,9 @@
         </button>
 
         <span class="badge float-right badge-{{$file->status()== 'Approved' ? 'success' : 'warning'}}"> {{ $file->status()}}</span>
+        @if($file->status() =='Approved')
+        <span class="badge float-right badge-info mr-2"> Downloaded : {{ $file->downloads->count()}} times</span>
+        @endif
 </span>
     </div>
 

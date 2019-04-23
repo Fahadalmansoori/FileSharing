@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md  bg-dark border mb-5 p-4 text-info">
+<nav class="navbar navbar-expand-md  bg-dark border mb-5 p-4 border">
 
     <a class="navbar-brand" href="{{ url('/') }}">
         {{ config('app.name', 'File sharing') }}
@@ -10,32 +10,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
 
-        <ul class="nav nav-pills  m-auto">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item border-bottom " href="{{route('course.index')}}">All courses</a>
-                    <a class="dropdown-item border-bottom" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Modules</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{route('module.index')}}">All Modules</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-            </li>
 
-        </ul>
+
 
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
@@ -50,7 +26,41 @@
                 @endif
             </li>
             @else
-@if(auth()->user()->hasRole('Tutor') ||auth()->user()->hasRole('Tutor'))
+
+            <ul class="nav nav-pills  m-auto">
+            <li class="nav-item m-2">
+                <a class="nav-link border {{request()->is('account')? 'active' : ' '}}" href="{{ route('account.index') }}"> My Dashboard</a>
+            </li>
+            <li class="nav-item m-2">
+                <a class="nav-link border {{request()->is('school/courses/*')? 'active' : ' '}}" href="{{ route('school.page',auth()->user()->school) }}"> My School</a>
+            </li>
+            <li class="nav-item m-2">
+                <a class="nav-link border {{request()->is('school')? 'active' : ' '}}" href="{{ route('course.page', auth()->user()->course) }}"> My Course</a>
+            </li>
+            @if(auth()->user()->hasRole('Tutor'))
+            <li class="nav-item dropdown border m-2 ">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item border-bottom " href="{{route('course.index')}}">All courses</a>
+                    <a class="dropdown-item border-bottom" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown border m-2">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Modules</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('module.index')}}">All Modules</a>
+                    <a class="dropdown-item" href="{{route('superAdmin.index',auth()->user())}}"> Admin Dashboard</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </li>
+            @endif
+        </ul>
+@if(auth()->user()->hasRole('Tutor'))
             <li class="nav-item dropdown mr-3">
                 <a class="nav-link dropdown-toggle border" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tutor Tools</a>
                 <div class="dropdown-menu">
@@ -95,7 +105,10 @@
                     </a>
 
                     <a class="dropdown-item" href="{{ route('home') }}">
-                        Home
+                       Search
+                    </a>
+                    <a class="dropdown-item" href="{{ route('file.create') }}">
+                       Upload a file
                     </a>
 
  <a class="dropdown-item" href="#">

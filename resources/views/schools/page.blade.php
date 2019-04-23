@@ -1,13 +1,21 @@
 @extends('layouts.app')
 
-@section('title' , 'All Courses')
+@section('title' , 'School')
 
 @section('content')
+{{$courses->links()}}
+
+<div class="alert">
+    <p class="text-info">
+{{$school->about}}
+</p>
+</div>
+
 @if (!$courses->count())
 " No Courses to show "
 @else
-<h3 class="text-info text-center card-title"> Courses in School {{$courses->first()->school->name}}
-    {{$courses->links()}}
+<h3 class="text-info text-center card-title">   {{$school->name}} School
+
 
 
     @foreach($courses as $course)
