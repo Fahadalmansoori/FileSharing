@@ -9,25 +9,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
-
-
-
-
-        <!-- Right Side Of Navbar -->
-        <ul class="navbar-nav ml-auto">
-            <!-- Authentication Links -->
-            @guest
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            <li class="nav-item">
-                @if (Route::has('register'))
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                @endif
-            </li>
-            @else
-
-            <ul class="nav nav-pills  m-auto">
+@auth
+        <ul class="nav nav-pills  m-auto">
             <li class="nav-item m-2">
                 <a class="nav-link border {{request()->is('account')? 'active' : ' '}}" href="{{ route('account.index') }}"> My Dashboard</a>
             </li>
@@ -60,8 +43,27 @@
             </li>
             @endif
         </ul>
+        @endauth
+
+
+
+        <!-- Right Side Of Navbar -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Authentication Links -->
+            @guest
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            </li>
+            <li class="nav-item">
+                @if (Route::has('register'))
+                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                @endif
+            </li>
+            @else
+
+
 @if(auth()->user()->hasRole('Tutor'))
-            <li class="nav-item dropdown mr-3">
+            <li class="nav-item dropdown m-2 mr-3">
                 <a class="nav-link dropdown-toggle border" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tutor Tools</a>
                 <div class="dropdown-menu">
                 <a class="dropdown-item border" href="{{route('admin.index')}}">Tutor Dashboard</a>
@@ -73,7 +75,7 @@
             </li>
     @endif
     @if(auth()->user()->hasRole('Super_Admin') )
-            <li class="nav-item dropdown mr-3">
+            <li class="nav-item dropdown m-2 mr-3">
                 <a class="nav-link dropdown-toggle border" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools</a>
                 <div class="dropdown-menu">
                 <a class="dropdown-item border" href="{{route('superAdmin.index',auth()->user())}}">Super Admin Dashboard</a>
