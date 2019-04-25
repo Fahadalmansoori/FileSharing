@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Accounts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Hash;
 
 class AccountController extends Controller
 {
@@ -36,9 +37,31 @@ return redirect()->back()->with('success', "You have updated your details.");
 
    }
 
+//get the change password form
+
    public function changePassword(User $user ){
 
     return view ('Account.changePassword', compact('user'));
    }
+
+//submit the cahnge password form
+
+   public function submitChangePassword(Request $request, User $user){
+   $request->validate([
+    'password' => ['required', function ($attribute, $value, $fail) {
+        if (!Hash::check($value,auth()->user()->password)) {
+                $fail(' Password provided is not matching the password on the system');
+                }
+            },],
+         'new_password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+        // update the password
+        $user->update([
+        'password' => Hash::make($request->input('new_password')),
+        ]);
+        return redirect()->back()->with('success', "Password updated.");
+        }
+
+
 
 }

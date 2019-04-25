@@ -4,15 +4,15 @@
 
 @section('Account.content')
 
-<form action="{{route('account.update', Auth()->user())}}" method="post" class="m-2">
+<form action="{{route('account.changePassword', Auth()->user())}}" method="post" class="m-2">
 @csrf
 
 <div class="form-row">
         <div class="form-group col-md-6">
-        <label for="opassword"> Old Password</label>
-        <input type="password" class="form-control col" name ="opassword" id="opassword">
-        @if($errors->has('opassword'))
-        <p class="text-danger"> {{$errors->first('opassword')}} </p>
+        <label for="password"> Old Password</label>
+        <input type="password" class="form-control col" name ="password" id="password">
+        @if($errors->has('password'))
+        <p class="text-danger"> {{$errors->first('password')}} </p>
         @endif
 
 
@@ -23,20 +23,20 @@
 
 
         <div class="form-group col-md-6 ">
-        <label for="nPassword"> New password </label>
-        <input type="password" class="form-control col" name ="nPassword" id="nPassword" >
+        <label for="new_password"> New password </label>
+        <input type="password" class="form-control col" name ="new_password" id="new_password" >
 
-        @if($errors->has('nPassword'))
-        <p class="text-danger"> {{$errors->first('nPassword')}} </p>
+        @if($errors->has('new_password'))
+        <p class="text-danger"> {{$errors->first('new_password')}} </p>
         @endif
         </div>
         </div>
         <div class="form-row">
         <div class="form-group col-md-6">
-        <label for="cpassword"> Confirm Password</label>
-        <input type="password" class="form-control col" name ="cpassword" id="cpassword">
-        @if($errors->has('cpassword'))
-        <p class="text-danger"> {{$errors->first('cpassword')}} </p>
+        <label for="new_password_confirmation"> Confirm Password</label>
+        <input type="password" class="form-control col" name ="new_password_confirmation" id="new_password_confirmation">
+        @if($errors->has('new_password_confirmation'))
+        <p class="text-danger"> {{$errors->first('new_password_confirmation')}} </p>
         @endif
 
 

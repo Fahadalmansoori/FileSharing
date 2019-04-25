@@ -29,6 +29,7 @@ Route::group(['prefix' => '/account', 'middleware' => 'auth', 'as' => 'account']
     Route::get('/update-details/{user}', 'Accounts\AccountController@update')->name('.update');
     Route::post('/update-details/{user}', 'Accounts\AccountController@store')->name('.update');
     Route::get('/change-password/{user}', 'Accounts\AccountController@changePassword')->name('.changePassword');
+    Route::post('/change-password/{user}', 'Accounts\AccountController@submitChangePassword')->name('.changePassword');
 });
 
 /*
