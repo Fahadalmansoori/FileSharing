@@ -9,14 +9,32 @@ use App\models\File;
 class UserController extends Controller
 {
 
-    // this function returns the user purchased files
+    // this function returns the user approved files
 
-    public function Purchased(User $user)
+    public function approved(User $user)
     {
-        $files = $user->files()->Purchased()->get();
+        $files = $user->files()->approved()->get();
         $school = $user->school;
         return
-            view('Users.files_purchased', compact('files','school'));
+            view('Users.files_approved', compact('files','school'));
+    }
+
+    // this function returns the user declined files
+
+    public function declined(User $user)
+    {
+        $files = $user->files()->declined()->get();
+        $school = $user->school;
+        return
+            view('Users.files_declined', compact('files','school'));
+    }
+
+    public function pending(User $user)
+    {
+        $files = $user->files()->pending()->get();
+        $school = $user->school;
+        return
+            view('Users.files_pending', compact('files','school'));
     }
 
     // this function returns the user owned files

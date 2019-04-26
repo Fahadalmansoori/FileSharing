@@ -1,13 +1,15 @@
 <nav class="nav flex-column">
     <h3 class=" text-secondary  border-bottom"> Your Files </h3>
 
-    <a class="nav-link  {{request()->is('user/files/owned/*')? ' bg-secondary text-warning' : ' '}} " href="{{route('user.files.owned',auth::user())}}">Owned Files</a>
-    <a class="nav-link  {{request()->is('user/files/purchased/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('user.files.purchased',auth::user())}}">Purchased Files</a>
-    <a class="nav-link {{request()->is('file/create')? ' bg-secondary text-warning' : ' '}}" href="{{route('file.create')}}">Upload a file</a>
+    <a class="nav-link text-info {{request()->is('user/files/owned/*')? ' bg-secondary text-warning' : ' '}} " href="{{route('user.files.owned',auth::user())}}">Uploaded Files</a>
+    <a class="nav-link text-info {{request()->is('user/files/approved/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('user.files.approved',auth::user())}}">Approved Files</a>
+    <a class="nav-link text-info {{request()->is('user/files/declined/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('user.files.declined',auth::user())}}">Declined Files</a>
+    <a class="nav-link text-info {{request()->is('user/files/pending/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('user.files.pending',auth::user())}}">Pending Files</a>
+    <a class="nav-link text-info {{request()->is('file/create')? ' bg-secondary text-warning' : ' '}}" href="{{route('file.create')}}">Upload a file</a>
 
     <h3 class=" text-secondary  border-bottom">Your Account </h3>
-    <a class="nav-link" href="#">Profile</a>
-    <a class="nav-link  {{request()->is('account/update-details/*')? ' bg-secondary text-warning' : ' '}} " href="{{route('account.update',auth()->user())}}">Update Details</a>
-    <a class="nav-link {{request()->is('account/change-password/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('account.changePassword',auth()->user())}}">Change Password</a>
+    <a class="nav-link text-info {{request()->is('account/details/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('account.details', auth::user())}}">Profile</a>
+    <a class="nav-link  text-info {{request()->is('account/update-details/*')? ' bg-secondary text-warning' : ' '}} " href="{{route('account.update',auth()->user())}}">Update Details</a>
+    <a class="nav-link text-info {{request()->is('account/change-password/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('account.changePassword',auth()->user())}}">Change Password</a>
 
 </nav>

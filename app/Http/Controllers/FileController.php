@@ -44,6 +44,11 @@ class FileController extends Controller
         return view('File.index', compact('files'));
     }
 
+    public function approved( )
+    {
+        $files =File::approved()->get();
+        return view('File.index', compact('files'));
+    }
 
 
     /**

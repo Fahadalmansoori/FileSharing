@@ -26,6 +26,7 @@ Route::get('/search', 'SearchController@searchFiles')->name('search');
 
 Route::group(['prefix' => '/account', 'middleware' => 'auth', 'as' => 'account'], function () {
     Route::get('/', 'Accounts\AccountController@index')->name('.index');
+    Route::get('/details/{user}', 'Accounts\AccountController@show')->name('.details');
     Route::get('/update-details/{user}', 'Accounts\AccountController@update')->name('.update');
     Route::post('/update-details/{user}', 'Accounts\AccountController@store')->name('.update');
     Route::get('/change-password/{user}', 'Accounts\AccountController@changePassword')->name('.changePassword');
@@ -64,7 +65,9 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth','tutor'], 'as' => 'a
 
 Route::group(['prefix' => '/user', 'middleware' => 'auth', 'as' => 'user'], function () {
     Route::get('/files/owned/{user}', 'UserController@Owned')->name('.files.owned');
-    Route::get('/files/purchased/{user}', 'UserController@Purchased')->name('.files.purchased');
+    Route::get('/files/approved/{user}', 'UserController@approved')->name('.files.approved');
+    Route::get('/files/declined/{user}', 'UserController@declined')->name('.files.declined');
+    Route::get('/files/pending/{user}', 'UserController@pending')->name('.files.pending');
 });
 
 /*
@@ -103,7 +106,7 @@ File Routes
 Route::group(['prefix' => '/file', 'middleware' => 'auth', 'as' => 'file'], function () {
      Route::get('/page/{file}', 'FileController@show')->name('.page');
     Route::get('/owned', 'FileController@Owned')->name('.owned');
-    Route::get('/purchased', 'FileController@Purchased')->name('.purchased');
+    Route::get('/approved', 'FileController@approved')->name('.approved');
     Route::get('/create', 'FileController@create')->name('.create');
     Route::post('/create', 'FileController@store')->name('.store');
     Route::post('/submit/{file}', 'FileController@SubmitFileAnduploads')->name('.submitAll');

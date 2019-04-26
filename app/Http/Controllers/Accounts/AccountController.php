@@ -37,6 +37,13 @@ return redirect()->back()->with('success', "You have updated your details.");
 
    }
 
+public function show(User $user){
+$school = $user->school;
+$course = $user->course;
+
+    return view('Account.details', compact('user', 'school','course'));
+}
+
 //get the change password form
 
    public function changePassword(User $user ){

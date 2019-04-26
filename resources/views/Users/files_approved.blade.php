@@ -9,8 +9,9 @@
 </div>
 @else
 <div>
-
+@foreach($files as $file)
     @include('File.partials.fileTemplate')
+    @endforeach
 </div>
 @endif
 @endsection
