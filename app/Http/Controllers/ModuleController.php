@@ -50,7 +50,6 @@ class ModuleController extends Controller
     {
         $files  = $module->files()->paginate(4);
         $course = $module->course;
-
         $school = $module->course->school;
 
         return view('modules.page', compact('module', 'files', 'course', 'school'));

@@ -28,9 +28,9 @@
     </tr>
     <tr>
       <th scope="row">Module:</th>
-      <td> {{$file->module->title}}</td>
-      <th>Year:</th>
-      <td>  {{$file->module->year}}</td>
+      <td> {{$file->module->title}}( Year {{$file->module->year}})</td>
+      <th>Course:</th>
+      <td> {{$file->module->course->title}} </td>
     </tr>
     <tr>
       <th scope="row">School :</th>

@@ -11,54 +11,70 @@
         @include('courses.partials.courseTemplate')
     </div>
 
-    <div class="card-columns">
+    <!-- <div class="card-columns"> -->
 
         <!-- total mark Card -->
-        <div class="card bg-light text-info text-center p-3">
-            <blockquote class="blockquote mb-0 ">
-                <strong>Part of School :</strong> <a href="{{route('school.courses',$school)}}" class="text-info">
-                    {{$school->name}}
-                </a>
-                <a href="{{route('school.courses',$school)}}" class="btn btn-link float-right text-info"> View all Courses >></a>
-            </blockquote>
+        <div class="row">
+            <div class="col-md-4">
+              <div class="col">
+                 <div class="card bg-light text-info text-center p-3">
+                            <blockquote class="blockquote mb-0 ">
+                                <strong>Part of School :</strong> <a href="{{route('school.courses',$school)}}" class="text-info">
+                                    {{$school->name}}
+                                </a>
+                                <a href="{{route('school.courses',$school)}}" class="btn btn-link float-right text-info"> View all Courses >></a>
+                            </blockquote>
 
+
+                        </div>
+
+                </div>
+                <div class="col mt-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title text-info text-center">About {{$module->title}} </h5>
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">{{$module->about}}</p>
+                            <span class="badge badge-info float-right"> Total Mark : {{$module->total_mark}} </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                 <div class="col-md-8">
+ <!-- Module Card -->
+                    <div class=" card">
+                        <div class="card-header">
+                            <h5 class="card-title text-info text-center">Top Assignments </h5>
+                        </div>
+
+
+                            @if (!$files->count())
+                            <p class="text-center"> This module has no assignments yet </p>
+                                            @else
+                            @foreach($files as $file)
+
+                            @include('File.partials.fileTemplate')
+
+                            @endforeach
+
+                            @endif
+
+                    </div>
+            </div>
 
         </div>
 
 
-        <!-- Module Card -->
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title text-info text-center">About {{$module->title}} </h5>
-            </div>
-            <div class="card-body">
 
-                <p class="card-text">{{$module->about}}</p>
-                <span class="badge badge-info float-right"> Total Mark : {{$module->total_mark}} </span>
-            </div>
-        </div>
+
 
 
 
         <!-- School Card -->
-        <div class=" ">
-            <div class="card-header">
-                <h5 class="card-title text-info text-center">Top Assignments </h5>
-            </div>
 
 
-                @if (!$files->count())
-                <p class="text-center"> This module has no assignments yet </p>
-                @else
-@foreach($files as $file)
 
-@include('File.partials.fileTemplate')
-
-@endforeach
-
-@endif
-
-        </div>
-
-
-    </div>
+    <!-- </div> -->
