@@ -25,10 +25,7 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item border-bottom " href="{{route('course.index')}}">All courses</a>
-                    <a class="dropdown-item border-bottom" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
+
                 </div>
             </li>
             <li class="nav-item dropdown border m-2">

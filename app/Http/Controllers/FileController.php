@@ -258,7 +258,12 @@ class FileController extends Controller
 
     public function request( File $file){
         $requester = Auth::user();
-      //  $file->downloads()->save($file);
+        $file->downloads()->create([
+            'user_id'=> auth()->user()->id,
+            'file_id'=>$file->id,
+
+        ]);
+
         $this->sendRequestFileEmail($requester, $file);
         return redirect()->back()->with('info', 'We will send you an email with a download link,  please check your email in a few minutes.');
     }

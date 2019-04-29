@@ -48,10 +48,9 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        $files  = $module->files()->paginate(4);
+        $files  = $module->files()->approved()->paginate(4);
         $course = $module->course;
         $school = $module->course->school;
-
         return view('modules.page', compact('module', 'files', 'course', 'school'));
     }
 

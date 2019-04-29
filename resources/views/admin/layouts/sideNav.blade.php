@@ -7,8 +7,8 @@
     <a class="nav-link {{request()->is('file/create')? ' bg-info text-warning' : ' '}}" href="{{route('admin.create')}}">Upload a file</a>
 
     <h3 class=" text-secondary  border-bottom">Your Account </h3>
-    <a class="nav-link" href="#">Profile</a>
-    <a class="nav-link" href="#">Update Details</a>
-    <a class="nav-link" href="#">Change Password</a>
+    <a class="nav-link text-info {{request()->is('account/details/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('account.details', auth::user())}}">Profile</a>
+    <a class="nav-link  text-info {{request()->is('account/update-details/*')? ' bg-secondary text-warning' : ' '}} " href="{{route('account.update',auth()->user())}}">Update Details</a>
+    <a class="nav-link text-info {{request()->is('account/change-password/*')? ' bg-secondary text-warning' : ' '}}" href="{{route('account.changePassword',auth()->user())}}">Change Password</a>
 
 </nav>

@@ -1,5 +1,5 @@
 <div class="accordion" id="accordionExample">
-  <div class="card">
+  <div class="card mb-2">
     <div class="card-header" id="headingOne">
       <span class="mb-0">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne{{$file->id}}" aria-expanded="false" aria-controls="collapseOne">
@@ -50,27 +50,31 @@
 @endif
 
 
-
       <td><a  href="{{route('file.request', $file)}}" class="btn btn-outline-info">  Download Assignment </a></td>
 
-
-
-      @if(!$file->approved && auth()->user()->hasRole('Tutor'))
-      <td> <a href="{{route('file.approve',$file)}}" class="btn btn-outline-info "  > Approve </a> </td>
-      @elseif($file->approved)
-      <th>   {{ $file->approved ? 'Approved ' : 'Declined '}}   By: </th>
-
-      <td><span class="text-info">
-           {{$file->approved_by == Auth::user()->id && $file->
-            approved ? ' You' : $file->approval()->getFullName() }}
-          </span> |  {{$file->updated_at->diffForHumans()}}</td>
-      @endif
-      @if( auth()->user()->hasRole('Tutor') && $file->finished == false)
-      <td>  <a href="{{route('file.decline', $file)}}" class="btn btn-outline-danger"> Decline </a> </td>
-      @endif
     </tr>
+
   </tbody>
 </table>
+      </div>
+      <div class="card-footer ">
+<div class="alert">
+      @if(!$file->approved && auth()->user()->hasRole('Tutor'))
+       <a href="{{route('file.approve',$file)}}" class="btn btn-outline-info float-right"  > Approve </a>
+      @elseif($file->approved)
+
+      <span class="float-right">
+     <strong >   {{ $file->approved ? 'Approved ' : 'Declined '}}   By: </strong>
+
+      <span class="text-info ">
+           {{$file->approved_by == Auth::user()->id && $file->
+            approved ? ' You' : $file->approval()->getFullName() }}
+          </span> |  {{$file->updated_at->diffForHumans()}}  </span>
+      @endif
+      @if( auth()->user()->hasRole('Tutor') && $file->finished == false)
+      <a href="{{route('file.decline', $file)}}" class="btn btn-outline-danger float-left"> Decline </a>
+      @endif
+      </div>
       </div>
     </div>
   </div>
