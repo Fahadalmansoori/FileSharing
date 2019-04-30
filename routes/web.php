@@ -44,6 +44,8 @@ Route::group(['prefix' => '/review', 'middleware' => ['auth','tutor'], 'as' => '
 Route::group(['prefix' => '/superAdmin', 'middleware' => ['auth','admin'], 'as' => 'superAdmin'], function () {
     Route::get('/', 'SuperadminController@index')->name('.index');
     Route::get('/users', 'SuperadminController@getAllUsers')->name('.allUsers');
+    Route::get('/courses', 'SuperadminController@getAllCourses')->name('.allCourses');
+    Route::get('/modules', 'SuperadminController@getAllModules')->name('.allModules');
     Route::post('/addRole/{user}', 'SuperadminController@addRole')->name('.addRole');
 });
 

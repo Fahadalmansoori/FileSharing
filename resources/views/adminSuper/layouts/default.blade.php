@@ -4,7 +4,7 @@
 
 
 @section('infobar')
-<h3 class="text-info  text-center">info bar </h3>
+<h3 class="text-info  text-center">Admin Dashboard </h3>
 @endsection
 @section('content')
 

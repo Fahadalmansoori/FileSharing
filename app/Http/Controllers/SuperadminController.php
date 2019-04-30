@@ -7,7 +7,8 @@ use App\Models\User;
 use App\Models\School;
 use App\Models\Role;
 use Auth;
-
+use App\Models\Course;
+use App\Models\Module;
 
 class SuperadminController extends Controller
 {
@@ -28,6 +29,23 @@ public function getAllUsers(){
     $users= User::paginate(4);
     return view ('adminSuper.allUsers', compact('users','superAdmin','roles'));
 }
+
+public function getAllCourses(){
+
+    $superAdmin = Auth::user();
+    $roles = Role::all();
+    $courses= Course::paginate(4);
+    return view ('adminSuper.allCourses', compact('courses','superAdmin','roles'));
+}
+
+public function getAllModules(){
+
+    $superAdmin = Auth::user();
+    $roles = Role::all();
+    $modules= Module::paginate(8);
+    return view ('adminSuper.allModules', compact('modules','superAdmin','roles'));
+}
+
 
     public function addRole(Request $request, User $user)
     {
