@@ -125,10 +125,11 @@ class FileController extends Controller
     public function show(File $file )
     {
      $module = $file->module;
-     $school = $file->module->school;
+     $school = $file->module->course->school;
+
      $course = $module->course;
      $owner = User::find($file->user_id);
-     return redirect()->view('File.page', compact('module','school','course','owner','file'))->with('danger',"cvcvcvc");
+     return view('File.page', compact('module','school','course','owner','file'));
 
     }
 

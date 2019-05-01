@@ -33,7 +33,7 @@ class File extends Model
         return $this->downloads()->count();
     }
 
-    public function files(){
+    public function school(){
         return $this->hasOneThrough(Module::class, School::class );
      }
 

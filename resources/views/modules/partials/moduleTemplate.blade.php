@@ -23,12 +23,7 @@
                     <li class="nav-item">
                         <a class="nav-link  text-info" id="module-tab" data-toggle="tab" href="#year2-{{$module->id}}" role="tab" aria-controls="module" aria-selected="false">Assignments</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link  text-info" id="module-tab" data-toggle="tab" href="#year3-{{$module->id}}" role="tab" aria-controls="module" aria-selected="false">Year 3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  text-info" id="module-tab" data-toggle="tab" href="#year4-{{$module->id}}" role="tab" aria-controls="module" aria-selected="false">Year 4</a>
-                    </li>
+
 
 
                 </ul>
@@ -39,11 +34,21 @@
                     </div>
                     <div class="tab-pane fade" id="year1-{{$module->id}}" role="tabpanel" aria-labelledby="module-tab"> Total Mark : {{$module->total_mark}}</div>
 
-                    <div class="tab-pane fade" id="year2-{{$module->id}}" role="tabpanel" aria-labelledby="module-tab">Assignments</div>
+                    <div class="tab-pane fade" id="year2-{{$module->id}}" role="tabpanel" aria-labelledby="module-tab">
 
-                    <div class="tab-pane fade" id="year3-{{$module->id}}" role="tabpanel" aria-labelledby="module-tab">Year 3</div>
+                    @if (!$module->files->count())
+                            <p class="text-center"> This module has no assignments yet </p>
+                            @else
+                            @foreach($module->files as $file)
 
-                    <div class="tab-pane fade" id="year4-{{$module->id}}" role="tabpanel" aria-labelledby="module-tab">Year 4</div>
+                                <a href="{{route('file.page',$file)}}">{{ $file->title}}</a>
+
+                            @endforeach
+
+                            @endif
+
+
+                    </div>
 
 
                 </div>

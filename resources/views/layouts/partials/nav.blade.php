@@ -10,35 +10,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
 @auth
-        <ul class="nav nav-pills  m-auto">
+        <ul class="nav nav-pills nav-fill m-auto">
             <li class="nav-item m-2">
-                <a class="nav-link border text-info {{request()->is('account')? 'active' : ' '}}" href="{{ route('account.index') }}"> My Dashboard</a>
+                <a class="nav-link border text-info {{request()->is('account')? 'bg-info text-warning' : ' '}}" href="{{ route('account.index') }}"> My Dashboard</a>
             </li>
             <li class="nav-item m-2">
-                <a class="nav-link bordertext-info border text-info {{request()->is('school/courses/*')? 'active' : ' '}}" href="{{ route('school.page',auth()->user()->school) }}"> My School</a>
+                <a class="nav-link bordertext-info border text-info {{request()->is('school/*')? 'bg-info text-warning' : ' '}}" href="{{ route('school.page',auth()->user()->school) }}"> My School</a>
             </li>
             <li class="nav-item m-2">
-                <a class="nav-link border text-info {{request()->is('school')? 'active' : ' '}}" href="{{ route('course.page', auth()->user()->course) }}"> My Course</a>
+                <a class="nav-link border text-info {{request()->is('course/*')? 'bg-info text-warning' : ' '}}" href="{{ route('course.page', auth()->user()->course) }}"> My Course</a>
             </li>
-            @if(auth()->user()->hasRole('Tutor'))
-            <li class="nav-item dropdown border m-2 ">
-                <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item border-bottom " href="{{route('course.index')}}">All courses</a>
 
-                </div>
-            </li>
-            <li class="nav-item dropdown border m-2">
-                <a class="nav-link dropdown-toggle text-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Modules</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{route('module.index')}}">All Modules</a>
-                    <a class="dropdown-item" href="{{route('superAdmin.index',auth()->user())}}"> Admin Dashboard</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-            </li>
-            @endif
         </ul>
         @endauth
 
@@ -64,9 +46,9 @@
                 <a class="nav-link dropdown-toggle border text-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tutor Tools</a>
                 <div class="dropdown-menu">
                 <a class="dropdown-item border" href="{{route('admin.index')}}">Tutor Dashboard</a>
-                    <a class="dropdown-item " href="#">Pending assignments</a>
+                    <a class="dropdown-item " href="{{ route('admin.pending', Auth::user())}}">Pending assignments</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item " href="#">My Details </a>
+                    <a class="dropdown-item " href="{{route('account.update',auth()->user())}}">Update Details </a>
 
                 </div>
             </li>
@@ -77,7 +59,7 @@
                 <div class="dropdown-menu">
                 <a class="dropdown-item border" href="{{route('superAdmin.index',auth()->user())}}">Super Admin Dashboard</a>
 
-                    <a class="dropdown-item" href="#"> Add  Role  </a>
+                    <a class="dropdown-item" href="{{route('superAdmin.allUsers')}}"> update roles   </a>
 
                 </div>
             </li>
