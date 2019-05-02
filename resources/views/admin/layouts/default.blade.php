@@ -21,7 +21,7 @@
                 <h4 class="text-white"> {{auth()->user()->files()->count()}} assignments </h4>
 
             </div><div class="col-md-3 text-center"> <h5 class="text-bold"> <strong>Pending assignments</h5></strong>
-                    <h4 class="text-white"> {{auth()->user()->files()->pending()->get()->count()}} Files </h4>
+                    <h4 class="text-white"> {{auth()->user()->school->files()->pending()->get()->count()}} Files </h4>
 
             </div>
 
