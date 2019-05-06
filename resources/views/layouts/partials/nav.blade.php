@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-md  navbar-dark bg-dark border mb-5 p-4 border">
-
-    <a class="navbar-brand" href="{{ url('/') }}">
+<!-- <img class="" src="{{storage_path('app/public/logo.png')}}" alt="File Sharing "> -->
+<a class="navbar-brand" href="{{ url('/') }}">
          {{ config('app.name', 'File sharing') }}
+
     </a>
     <button class="navbar-toggler border text-info" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
         <span class="navbar-toggler-icon"></span>
@@ -9,7 +10,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
-@auth
+    @auth
         <ul class="nav nav-pills nav-fill m-auto">
             <li class="nav-item m-2">
                 <a class="nav-link border text-info {{request()->is('account')? 'bg-info text-warning' : ' '}}" href="{{ route('account.index') }}"> My Dashboard</a>
